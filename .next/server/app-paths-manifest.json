@@ -1,5 +1,4 @@
 {
-  "/(site)/intro/AON/page": "app/(site)/intro/AON/page.js",
   "/(site)/page": "app/(site)/page.js",
-  "/(site)/intro/Vanguard/page": "app/(site)/intro/Vanguard/page.js"
+  "/(site)/intro/Jedi/page": "app/(site)/intro/Jedi/page.js"
 }

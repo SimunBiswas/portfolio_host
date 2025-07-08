@@ -11,15 +11,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(site)/page.js"
     ],
-    "/(site)/intro/AON/page": [
+    "/(site)/intro/Jedi/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(site)/intro/AON/page.js"
-    ],
-    "/(site)/intro/Vanguard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(site)/intro/Vanguard/page.js"
+      "static/chunks/app/(site)/intro/Jedi/page.js"
     ]
   }
 }

@@ -681,11 +681,11 @@ video {
 .h-screen {
   height: 100vh;
 }
-.w-40 {
-  width: 10rem;
-}
 .w-6 {
   width: 1.5rem;
+}
+.w-60 {
+  width: 15rem;
 }
 .w-8 {
   width: 2rem;
@@ -710,9 +710,6 @@ video {
 }
 .w-screen {
   width: 100vw;
-}
-.w-60 {
-  width: 15rem;
 }
 .-translate-y-1\/2 {
   --tw-translate-y: -50%;
@@ -902,11 +899,11 @@ video {
 .uppercase {
   text-transform: uppercase;
 }
-.tracking-wider {
-  letter-spacing: 0.05em;
-}
 .tracking-wide {
   letter-spacing: 0.025em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 .text-white {
   --tw-text-opacity: 1;
