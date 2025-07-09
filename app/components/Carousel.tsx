@@ -124,7 +124,7 @@ export default function Carousel() {
 
       {/* Main Slide */}
       <div className="flex justify-center items-center h-[60%] ">
-        <div className="relative w-[80%] h-[300px] lg:h-[700px] z-[30]">
+        <div className="relative w-[80%] h-[150px] md:h-[300px] lg:h-[700px] z-[30]">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={page}
@@ -150,13 +150,13 @@ export default function Carousel() {
       </div>
 
       {/* Pagination Dots */}
-      <div className="flex justify-center z-[20] mt-11">
+      <div className="flex justify-center z-[20] mt-4 lg:mt-11">
         {images.map((_, index) => {
           const isActive = imageIndex === index
           return (
             <motion.div
               key={index}
-              className={`w-[15px] h-[15px] rounded-lg m-2 cursor-pointer ${
+              className={`w-[10px] h-[10px] lg:w-[15px] lg:h-[15px] rounded-lg m-1 cursor-pointer ${
                 isActive ? 'bg-[#9c9c9c]' : 'bg-[#9a9898]'
               }`}
               onClick={() => handleDotClick(index)}
@@ -169,18 +169,18 @@ export default function Carousel() {
       </div>
 
       {/* Side Previews */}
-      <div className="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-[10]">
+      <div className="absolute top-1/2 -translate-y-2/3 lg:-translate-y-1/2 w-full flex justify-between pointer-events-none z-[10]">
         <Image
           src={images[(imageIndex - 1 + images.length) % images.length].src}
           alt="Previous image preview"
-          className="w-[100px] h-[200px] lg:w-[200px] lg:h-[400px] object-cover object-right rounded-xl opacity-40"
+          className="w-[100px] h-[100px] lg:w-[200px] lg:h-[400px] object-cover object-right rounded-xl opacity-40"
           width={1000}
           height={600}
         />
         <Image
           src={images[(imageIndex + 1) % images.length].src}
           alt="Next image preview"
-          className="w-[100px] h-[200px] lg:w-[200px] lg:h-[400px] object-cover object-left rounded-xl opacity-40"
+          className="w-[100px] h-[100px] lg:w-[200px] lg:h-[400px] object-cover object-left rounded-xl opacity-40"
           width={1000}
           height={600}
         />
