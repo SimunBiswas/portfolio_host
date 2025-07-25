@@ -123,7 +123,7 @@ export default function Carousel() {
       </button>
 
       {/* Main Slide */}
-      <div className="flex justify-center items-center h-[60%] ">
+      <div className="flex justify-center items-center h-[60%]">
         <div className="relative w-[80%] h-[150px] md:h-[300px] lg:h-[700px] z-[30]">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -135,7 +135,7 @@ export default function Carousel() {
               exit="exit"
               transition={{
                 x: { type: 'spring', stiffness: 150, damping: 30 },
-                opacity: { duration: 0.2, ease: 'easeInOut' },
+                opacity: { duration: 0.2, ease: "easeInOut" },
               }}
               className="absolute w-full h-full"
             >
