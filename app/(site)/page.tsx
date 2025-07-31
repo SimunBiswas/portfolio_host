@@ -26,11 +26,13 @@ export default function Home() {
         </AnimatePresence>
         
       </div>
-      <div className='z-2 p-11 font-orbitron tracking-wide'>
+      <div className='z-2 p-2 font-orbitron tracking-wide bg-[#fff]'>
         {show ? null : 
          <>
            <StickyNav />
-           <Carousel />
+           <div className='width-full my-11 h-full flex justify-center items-center'>
+              <Carousel />
+           </div>
          </>}
       </div>
       
