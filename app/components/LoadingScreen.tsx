@@ -45,7 +45,7 @@ export default function LoadingScreen() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 bg-black flex items-center justify-center z-[9999] flex-col"
+          className="fixed inset-0 bg-black flex items-center justify-center z-[10] flex-col"
         >
           {/* Progress bar wrapper */}
           <div className="w-[50%] h-3 bg-gray-800 rounded overflow-hidden">

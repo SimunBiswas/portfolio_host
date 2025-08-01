@@ -3,7 +3,7 @@
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import StickyNav from '../components/Header';
-import Carousel from '../components/Carousel';
+import Carousel_1 from '../components/Carousel_1';
 import IntroBg from '../components/IntroBg';
 
 export default function Home() {
@@ -20,18 +20,20 @@ export default function Home() {
 
   return (
     <div className='relative h-screen w-screen bg-black font-orbitron tracking-wide'>
-      <div className="z-500">
-        <AnimatePresence>
-          {show && <IntroBg />}
-        </AnimatePresence>
-        
-      </div>
-      <div className='z-2 p-2 font-orbitron tracking-wide bg-[#fff]'>
+      <AnimatePresence>
+        {show && (
+          <div className="fixed top-0 left-0 w-screen h-screen z-50">
+            <IntroBg />
+          </div>
+        )}
+      </AnimatePresence>
+
+      <div className='z-2 font-orbitron tracking-wide bg-[#fff]'>
         {show ? null : 
          <>
            <StickyNav />
-           <div className='width-full my-11 h-full flex justify-center items-center'>
-              <Carousel />
+           <div className='w-screen h-full flex justify-center items-center'>
+              <Carousel_1 />
            </div>
          </>}
       </div>
