@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import Link from "next/link";
+import Button from "./Button";
 
 const images = [
   { src: "/images/AON.png", title: "AON", href: "/intro/AON" },
@@ -13,32 +13,36 @@ const images = [
 
 const Carousel_1 = () => {
   const [centerIndex, setCenterIndex] = useState(0);
-  const [isCenterHovered, setIsCenterHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Helper to wrap index circularly
   const getIndex = (offset: number) => {
-    const index = (centerIndex + offset + images.length) % images.length;
-    return index;
+    return (centerIndex + offset + images.length) % images.length;
   };
 
-  // Dynamic Framer Motion variants
   const imageVariants = {
     left: (hovered: boolean) => ({
-      x: hovered ? "-150%" : "-130%",
-      scale: hovered ? 0.7 :  0.8,
+      x: hovered ? "-145%" : "-140%",
+      scale: hovered ? 0.8 : 1,
       zIndex: 20,
     }),
-    center: { x: "0%", scale: 1.7, zIndex: 30 },
+    center: {
+      x: "0%",
+      scale: 1.7,
+      zIndex: 30,
+    },
     right: (hovered: boolean) => ({
-        x: hovered ? "150%" : "130%",
-        scale: hovered ? 0.7 :  0.8,
-        zIndex: 20,
-      }),
-    // right: (hovered : boolean) => ({ x: hovered ? "150%" : "130%", scale: 0.8, zIndex: 20 }),
-    hidden: { scale: 0, opacity: 0, zIndex: 0, pointerEvents: "none" },
+      x: hovered ? "145%" : "140%",
+      scale: hovered ? 0.8 : 1,
+      zIndex: 20,
+    }),
+    hidden: {
+      scale: 0,
+      opacity: 0,
+      zIndex: 0,
+      pointerEvents: "none",
+    },
   };
 
-  // Navigation
   const handleNext = () => {
     setCenterIndex((prev) => (prev + 1) % images.length);
   };
@@ -53,53 +57,74 @@ const Carousel_1 = () => {
   };
 
   return (
-    <div className="flex items-center justify-center flex-col h-screen bg-black relative overflow-hidden w-full scale-300">
+    <div className="flex items-center justify-center flex-col h-screen bg-[#0f0f0f] relative overflow-hidden w-full">
       {/* Carousel Container */}
-      <div className="relative w-[120%] h-[400px] flex justify-center items-center">
+      <div className="relative w-[120%] h-full flex justify-center items-center">
         {images.map((img, i) => {
           let variant: keyof typeof imageVariants = "hidden";
           if (i === getIndex(-1)) variant = "left";
           else if (i === centerIndex) variant = "center";
           else if (i === getIndex(1)) variant = "right";
 
+          const isCenter = i === centerIndex;
+
           return (
-            <motion.img
+            <motion.div
               key={i}
-              src={img.src}
-              alt={`img-${i}`}
-              className="absolute rounded-xl shadow-lg cursor-pointer"
-              variants={imageVariants}
-              animate={variant}
-              custom={variant === "left" || variant === "right" ? isCenterHovered : undefined}
-              transition={{ duration: 0.25 }}
+              className="absolute"
               style={{ width: "30%" }}
               onClick={() => handleClick(i)}
-              onMouseEnter={() => i === centerIndex && setIsCenterHovered(true)}
-              onMouseLeave={() => i === centerIndex && setIsCenterHovered(false)}
-              whileHover={
-                i === centerIndex
-                  ? {
-                      scale: 2,
-                      transition: {
-                        duration: 0.25,
-                        ease: "easeInOut",
-                      },
-                    }
-                  : undefined
-              }
-            />
+              onMouseEnter={() => isCenter && setIsHovered(true)}
+              onMouseLeave={() => isCenter && setIsHovered(false)}
+              custom={variant === "left" || variant === "right" ? isHovered : undefined}
+              variants={imageVariants}
+              animate={variant}
+              transition={{ duration: 0.25 }}
+              whileHover={isCenter ? { scale: 2 } : undefined}
+            >
+              {/* Image */}
+              <motion.img
+                src={img.src}
+                alt={`img-${i}`}
+                className="rounded-xl shadow-lg cursor-pointer w-full"
+              />
+
+              {/* Center Hover Overlay */}
+              {isCenter && (
+  <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isHovered ? 1 : 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="absolute inset-0 flex flex-col justify-end items-center text-white bg-gradient-to-b from-transparent to-black/60 z-10"
+    >
+      {/* This container scales BOTH text + button */}
+      <motion.div
+        style={{
+          fontSize: "clamp(0.8rem, 2vw, 0.8rem)", // Responsive font size
+        }}
+        initial={{ y: 20, opacity: 0, scale: 1 }}
+        animate={{
+          y: isHovered ? 0 : 20,
+          opacity: isHovered ? 1 : 0,
+          scale: isHovered ? 1.05 : 1, // Hover scale
+        }}
+        transition={{ duration: 0.3 }}
+        className="w-[90%] flex justify-between items-center p-2"
+      >
+        <span className="uppercase tracking-wider font-semibold">
+          {img.title}
+        </span>
+        <div className="scale-75"><Button text="View Project" href={img.href} /></div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+)}
+
+            </motion.div>
           );
         })}
-      </div>
-
-      {/* Title with Link */}
-      <div className="mt-8 text-center z-10">
-        <Link
-          href={images[centerIndex].href}
-          className="text-white text-xl font-semibold hover:underline"
-        >
-          {images[centerIndex].title}
-        </Link>
       </div>
 
       {/* Navigation Buttons */}
@@ -107,6 +132,7 @@ const Carousel_1 = () => {
         <button
           className="bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition"
           onClick={handleBack}
+          
         >
           Back
         </button>

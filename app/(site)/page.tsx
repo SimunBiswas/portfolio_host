@@ -2,7 +2,7 @@
 // Make sure the file exists at ../components/IntroBg.tsx or adjust the path accordingly
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import StickyNav from '../components/Header';
+// import StickyNav from '../components/Header';
 import Carousel_1 from '../components/Carousel_1';
 import IntroBg from '../components/IntroBg';
 
@@ -31,8 +31,8 @@ export default function Home() {
       <div className='z-2 font-orbitron tracking-wide bg-[#fff]'>
         {show ? null : 
          <>
-           <StickyNav />
-           <div className='w-screen h-full flex justify-center items-center'>
+           {/* <StickyNav /> */}
+           <div className='w-screen h-full flex justify-center items-center bg-[#0f0f0f]'>
               <Carousel_1 />
            </div>
          </>}
