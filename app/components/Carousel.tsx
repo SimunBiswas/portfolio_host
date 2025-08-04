@@ -179,7 +179,7 @@ export default function Carousel() {
             src={images[(imageIndex + 1) % images.length].src}
             alt="next"
             loading="lazy"
-            className="w-[80px] lg:w-[220px] h-[100px] lg:h-[320px] rounded-xl opacity-60 object-cover object-left"
+            className="w-[80px] lg:w-[220px] h-[0px] lg:h-[320px] rounded-xl opacity-60 object-cover object-left"
             width={320}
             height={320}
           />
