@@ -14,7 +14,7 @@ const images = [
 
 const Carousel_1 = () => {
   const [centerIndex, setCenterIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
   const [clickDisabled, setClickDisabled] = useState(false);
 
   // ✅ Paginate with click-disable delay
