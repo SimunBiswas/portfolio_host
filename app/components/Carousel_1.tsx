@@ -6,10 +6,10 @@ import Button from "./Button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const images = [
-  { src: "/images/AON.png", title: "AON", href: "/intro/AON" },
-  { src: "/images/OTWD.png", title: "Over the Walking Dead", href: "/intro/OTWD" },
-  { src: "/images/Jedi.png", title: "Star Wars Jedi Survivor", href: "/intro/Jedi" },
-  { src: "/images/Vanguard.png", title: "Call of Duty Vanguard", href: "/intro/Vanguard" },
+  { src: "/images/AON.png", title: "AON", href: "/intro/AON", grad_from : "#83D9F4", grad_via : "#3C7E9E", grad_to: "#000B13" },
+  { src: "/images/OTWD.png", title: "Over the Walking Dead", href: "/intro/OTWD", grad_from : "#E29999", grad_via : "#AF4848", grad_to: "#5D0D0D" },
+  { src: "/images/Jedi.png", title: "Star Wars Jedi Survivor", href: "/intro/Jedi", grad_from : "#CA843A", grad_via : "#CA843A", grad_to: "#110602" },
+  { src: "/images/Vanguard.png", title: "Call of Duty Vanguard", href: "/intro/Vanguard", grad_from : "#FCCAAB", grad_via : "#5A4A1F", grad_to: "#110B0C" },
 ];
 
 const Carousel_1 = () => {
@@ -85,7 +85,6 @@ const Carousel_1 = () => {
         {/* Right Curved Gradient Overlay */}
         <div className="pointer-events-none absolute right-0 top-0 w-[20%] h-full z-50 
                         bg-gradient-to-l from-[#0f0f0f] to-transparent rounded-tl-[200px] rounded-bl-[200px]" />
-
         {images.map((img, i) => {
           let variant: keyof typeof imageVariants = "hidden";
           if (i === getIndex(-1)) variant = "left";
@@ -122,8 +121,10 @@ const Carousel_1 = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: isHovered ? 1 : 0 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 flex flex-col justify-end items-center text-white bg-gradient-to-b from-transparent to-black/60 z-10 border-2 border-transparent shadow-[0_0_20px_#EC682D] rounded-lg"
+                    transition={{ duration: 0.25 }}
+                    className={`absolute inset-1 blur-lg -z-10 flex flex-col justify-end items-center text-white 
+                      bg-gradient-to-b from-[${img.grad_from}] via-[${img.grad_via}] to-[${img.grad_to}]
+                      border-2 border-transparent rounded-lg`}                    
                   >
                     <motion.div
                       style={{
@@ -135,7 +136,7 @@ const Carousel_1 = () => {
                         opacity: isHovered ? 1 : 0,
                         scale: isHovered ? 1.05 : 1,
                       }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.25 }}
                       className="w-[90%] flex justify-between items-center p-2 rounded-lg "
                     >
                       <span className="uppercase tracking-wider font-semibold">
