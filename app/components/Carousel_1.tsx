@@ -14,7 +14,7 @@ const images = [
 
 const Carousel_1 = () => {
   const [centerIndex, setCenterIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(true);
   const [clickDisabled, setClickDisabled] = useState(false);
 
   // ✅ Paginate with click-disable delay
@@ -111,44 +111,48 @@ const Carousel_1 = () => {
               <motion.img
                 src={img.src}
                 alt={`img-${i}`}
-                className="rounded-xl shadow-lg cursor-pointer w-full h-full object-cover"
+                className="rounded-xl shadow-lg cursor-pointer w-full h-full object-cover fl"
               />
 
               {/* Center Hover Overlay */}
               {isCenter && (
-                <AnimatePresence>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className={`absolute inset-1 blur-lg -z-10 flex flex-col justify-end items-center text-white 
-                      bg-gradient-to-b from-[${img.grad_from}] via-[${img.grad_via}] to-[${img.grad_to}]
-                      border-2 border-transparent rounded-lg`}                    
-                  >
-                    <motion.div
-                      style={{
-                        fontSize: "clamp(0.8rem, 2vw, 0.8rem)",
-                      }}
-                      initial={{ y: 20, opacity: 0, scale: 1 }}
-                      animate={{
-                        y: isHovered ? 0 : 20,
-                        opacity: isHovered ? 1 : 0,
-                        scale: isHovered ? 1.05 : 1,
-                      }}
-                      transition={{ duration: 0.25 }}
-                      className="w-[90%] flex justify-between items-center p-2 rounded-lg "
-                    >
-                      <span className="uppercase tracking-wider font-semibold">
-                        {img.title}
-                      </span>
-                      <div className="scale-75">
-                        <Button text="View Project" href={img.href} />
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </AnimatePresence>
-              )}
+              <AnimatePresence>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isHovered ? 1 : 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute inset-0 -z-10 rounded-lg blur-lg"
+                  style={{
+                    backgroundImage: `linear-gradient(to bottom, ${img.grad_from}, ${img.grad_via}, ${img.grad_to})`,
+                  }}
+                />
+
+                <motion.div
+                  style={{
+                    fontSize: "clamp(0.8rem, 2vw, 0.8rem)",
+                  }}
+                  initial={{ y: 20, opacity: 0, scale: 1 }}
+                  animate={{
+                    y: isHovered ? 0 : 20,
+                    opacity: isHovered ? 1 : 0,
+                    scale: isHovered ? 1 : 0.95,
+                  }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute w-full h-full top-0 text-white rounded-lg flex justify-between items-end bg-gradient-to-b from-transparent to-black/60"
+                >
+                  <div className="w-full flex justify-between items-center pb-2">
+                    <div className="uppercase tracking-wider font-semibold z-10 ps-9">
+                      {img.title}
+                    </div>
+                    <div className="scale-75 z-10">
+                      <Button text="View Project" href={img.href} />
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+)}
+
             </motion.div>
           );
         })}
@@ -168,20 +172,7 @@ const Carousel_1 = () => {
         <ArrowRight className="text-white w-6 h-6" />
       </button>
 
-      {/* Dots */}
-      <div className="flex justify-center z-20 mt-4 lg:mt-11">
-        {images.map((_, index) => (
-          <motion.div
-            key={index}
-            className={`w-[10px] h-[10px] lg:w-[15px] lg:h-[15px] rounded-lg m-1 cursor-pointer ${
-              index === centerIndex ? "bg-[#9c9c9c]" : "bg-[#9a9898]"
-            }`}
-            onClick={() => setCenterIndex(index)}
-            whileHover={{ scale: 1.2 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          />
-        ))}
-      </div>
+      
     </div>
   );
 };

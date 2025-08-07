@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Button = ({ text, href }: { text: string; href: string }) => {
   return (
     <Link href={href}>
-      <div className="relative inline-block w-32 h-12 text-sm overflow-hidden border-[#fdfcfc] rounded-3xl border-2 group cursor-pointer tracking-wide "
+      <div className="relative inline-block w-32 h-10 text-sm overflow-hidden border-[#fdfcfc] rounded-3xl border-2 group cursor-pointer tracking-wide "
       style={{
         fontSize: "clamp(0.6rem, 2vw, 0.6rem)", // Responsive font size
       }}
