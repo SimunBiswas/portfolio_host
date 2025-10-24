@@ -7,7 +7,7 @@ const Card = ({ image, title, href, isHovered }: { image: string; title: string;
     console.log(isHovered, 'isHovered in Card');
     return (
       <motion.div
-        className="orbitron w-full h-full rounded-2xl flex justify-center items-center relative z-[30]"
+        className="orbitron w-full h-full rounded-2xl flex justify-center items-center relative z-[30] "
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: 'cover',

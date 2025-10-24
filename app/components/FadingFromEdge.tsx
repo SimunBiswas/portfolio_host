@@ -7,7 +7,7 @@ const FadingFromEdge: React.FC<{ text: string, animation?: number, delay? : numb
         initial={{ x: `${animation}%`, opacity: 0 }}
         animate={{ x: '0%', opacity: 1 }}
         transition={{ duration: 0.75, delay: delay }}
-        className="text-4xl font-bold text-white text-start uppercase "
+        className="text-md lg:text-4xl font-bold text-white text-start uppercase "
     >
         {text}
     </motion.div>
